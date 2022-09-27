@@ -23,20 +23,6 @@ let timesArray = [
   { time: '7pm', color: 'future', value: '', key: 10, day: currentCalendarDay },
   { time: '8pm', color: 'future', value: '', key: 11, day: currentCalendarDay },
   { time: '9pm', color: 'future', value: '', key: 12, day: currentCalendarDay },
-  {
-    time: '10pm',
-    color: 'future',
-    value: '',
-    key: 13,
-    day: currentCalendarDay,
-  },
-  {
-    time: '11pm',
-    color: 'future',
-    value: '',
-    key: 14,
-    day: currentCalendarDay,
-  },
 ]
 
 function generateTimeBlocks() {
@@ -52,15 +38,15 @@ function generateTimeBlocks() {
     createdFlexBox.addClass('col-12 d-flex')
 
     const createdHeader = $(`<header>${timeArr.time}</header>`)
-    createdHeader.addClass('hour col-1')
+    createdHeader.addClass('hour col-2 col-md-1')
 
     const createdTextArea = $('<textarea></textarea>')
-    createdTextArea.addClass(`description col-10 ${timeArr.color}`)
+    createdTextArea.addClass(`description col-8 col-md-10 ${timeArr.color}`)
     createdTextArea.attr('data-key', timeArr.key)
     createdTextArea.text(timeArr.value)
 
     const createdIconContainer = $('<div></div>')
-    createdIconContainer.addClass('saveBtn col-1 ')
+    createdIconContainer.addClass('saveBtn col-2 col-md-1')
     const createdIcon = $('<i></i>')
     createdIcon.addClass('fas fa-save')
 
