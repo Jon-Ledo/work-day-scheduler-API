@@ -10,21 +10,33 @@ $(document).ready(function () {
 })
 // create time blocks for times ranging between 9AM and 9PM
 let timesArray = [
-  { time: '9am', color: 'past', value: '', key: 0, day: currentCalendarDay },
-  { time: '10am', color: 'past', value: '', key: 1, day: currentCalendarDay },
-  { time: '11am', color: 'past', value: '', key: 2, day: currentCalendarDay },
-  { time: '12pm', color: 'past', value: '', key: 3, day: currentCalendarDay },
-  { time: '1pm', color: 'past', value: '', key: 4, day: currentCalendarDay },
-  { time: '2pm', color: 'past', value: '', key: 5, day: currentCalendarDay },
-  { time: '3pm', color: 'past', value: '', key: 6, day: currentCalendarDay },
-  { time: '4pm', color: 'past', value: '', key: 7, day: currentCalendarDay },
-  { time: '5pm', color: 'past', value: '', key: 8, day: currentCalendarDay },
-  { time: '6pm', color: 'past', value: '', key: 9, day: currentCalendarDay },
-  { time: '7pm', color: 'past', value: '', key: 10, day: currentCalendarDay },
-  { time: '8pm', color: 'past', value: '', key: 11, day: currentCalendarDay },
-  { time: '9pm', color: 'past', value: '', key: 12, day: currentCalendarDay },
-  { time: '10pm', color: 'past', value: '', key: 13, day: currentCalendarDay },
-  { time: '11pm', color: 'past', value: '', key: 14, day: currentCalendarDay },
+  { time: '9am', color: 'future', value: '', key: 0, day: currentCalendarDay },
+  { time: '10am', color: 'future', value: '', key: 1, day: currentCalendarDay },
+  { time: '11am', color: 'future', value: '', key: 2, day: currentCalendarDay },
+  { time: '12pm', color: 'future', value: '', key: 3, day: currentCalendarDay },
+  { time: '1pm', color: 'future', value: '', key: 4, day: currentCalendarDay },
+  { time: '2pm', color: 'future', value: '', key: 5, day: currentCalendarDay },
+  { time: '3pm', color: 'future', value: '', key: 6, day: currentCalendarDay },
+  { time: '4pm', color: 'future', value: '', key: 7, day: currentCalendarDay },
+  { time: '5pm', color: 'future', value: '', key: 8, day: currentCalendarDay },
+  { time: '6pm', color: 'future', value: '', key: 9, day: currentCalendarDay },
+  { time: '7pm', color: 'future', value: '', key: 10, day: currentCalendarDay },
+  { time: '8pm', color: 'future', value: '', key: 11, day: currentCalendarDay },
+  { time: '9pm', color: 'future', value: '', key: 12, day: currentCalendarDay },
+  {
+    time: '10pm',
+    color: 'future',
+    value: '',
+    key: 13,
+    day: currentCalendarDay,
+  },
+  {
+    time: '11pm',
+    color: 'future',
+    value: '',
+    key: 14,
+    day: currentCalendarDay,
+  },
 ]
 
 function generateTimeBlocks() {
@@ -72,8 +84,8 @@ function applyColorClasses(timesArray) {
     }
 
     timesArray.forEach((item, index) => {
-      if (index > futureFlag) {
-        item.color = 'future'
+      if (index < futureFlag) {
+        item.color = 'past'
       }
     })
   })
