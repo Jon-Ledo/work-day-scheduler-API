@@ -10,21 +10,21 @@ $(document).ready(function () {
 })
 // create time blocks for times ranging between 9AM and 9PM
 let timesArray = [
-  { time: '9am', color: 'past', value: '', key: 0 },
-  { time: '10am', color: 'past', value: '', key: 1 },
-  { time: '11am', color: 'past', value: '', key: 2 },
-  { time: '12pm', color: 'past', value: '', key: 3 },
-  { time: '1pm', color: 'past', value: '', key: 4 },
-  { time: '2pm', color: 'past', value: '', key: 5 },
-  { time: '3pm', color: 'past', value: '', key: 6 },
-  { time: '4pm', color: 'past', value: '', key: 7 },
-  { time: '5pm', color: 'past', value: '', key: 8 },
-  { time: '6pm', color: 'past', value: '', key: 9 },
-  { time: '7pm', color: 'past', value: '', key: 10 },
-  { time: '8pm', color: 'past', value: '', key: 11 },
-  { time: '9pm', color: 'past', value: '', key: 12 },
-  { time: '10pm', color: 'past', value: '', key: 13 },
-  { time: '11pm', color: 'past', value: '', key: 14 },
+  { time: '9am', color: 'past', value: '', key: 0, day: currentCalendarDay },
+  { time: '10am', color: 'past', value: '', key: 1, day: currentCalendarDay },
+  { time: '11am', color: 'past', value: '', key: 2, day: currentCalendarDay },
+  { time: '12pm', color: 'past', value: '', key: 3, day: currentCalendarDay },
+  { time: '1pm', color: 'past', value: '', key: 4, day: currentCalendarDay },
+  { time: '2pm', color: 'past', value: '', key: 5, day: currentCalendarDay },
+  { time: '3pm', color: 'past', value: '', key: 6, day: currentCalendarDay },
+  { time: '4pm', color: 'past', value: '', key: 7, day: currentCalendarDay },
+  { time: '5pm', color: 'past', value: '', key: 8, day: currentCalendarDay },
+  { time: '6pm', color: 'past', value: '', key: 9, day: currentCalendarDay },
+  { time: '7pm', color: 'past', value: '', key: 10, day: currentCalendarDay },
+  { time: '8pm', color: 'past', value: '', key: 11, day: currentCalendarDay },
+  { time: '9pm', color: 'past', value: '', key: 12, day: currentCalendarDay },
+  { time: '10pm', color: 'past', value: '', key: 13, day: currentCalendarDay },
+  { time: '11pm', color: 'past', value: '', key: 14, day: currentCalendarDay },
 ]
 
 function generateTimeBlocks() {
@@ -92,8 +92,20 @@ function saveInputData(event) {
 }
 
 function getInputData() {
-  // grab data from localstorage to populate timeblocks (assuming its same day)
+  // grab data from localstorage to populate timeblocks
   if (localStorage.getItem('userData')) {
     timesArray = JSON.parse(localStorage.getItem('userData'))
+
+    // check if it's same day data
+    if (timesArray[0].day !== currentCalendarDay) {
+      resetArrayData()
+    }
   }
+}
+
+function resetArrayData() {
+  timesArray.forEach((item) => {
+    item.day = currentCalendarDay
+    item.value = ''
+  })
 }
