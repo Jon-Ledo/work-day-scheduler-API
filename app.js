@@ -3,11 +3,6 @@ const currentCalendarDay = currentDate.format('MMMM Do YYYY')
 const currentTime = currentDate.format('LT')
 const currentHour = currentDate.format('ha')
 
-$(document).ready(function () {
-  $('#currentDay').append(currentCalendarDay)
-  getInputData()
-  generateTimeBlocks()
-})
 // create time blocks for times ranging between 9AM and 9PM
 let timesArray = [
   { time: '9am', color: 'future', value: '', key: 0, day: currentCalendarDay },
@@ -25,11 +20,26 @@ let timesArray = [
   { time: '9pm', color: 'future', value: '', key: 12, day: currentCalendarDay },
 ]
 
+// on load
+$(document).ready(function () {
+  $('#currentDay').append(currentCalendarDay)
+  getInputData()
+  generateTimeBlocks()
+})
+
+// modal event listener
+$('button.close').click(closeModal)
+
+// ************
+// functions **
+// ************
+
+// create time block elements dynamically
 function generateTimeBlocks() {
   // change color value of the array
   applyColorClasses(timesArray)
 
-  // use loop to build time blocks one at a time
+  // loop to build time blocks one at a time
   timesArray.forEach((timeArr) => {
     const createdArticle = $('<article></article>')
     createdArticle.addClass('row time-block')
@@ -58,6 +68,7 @@ function generateTimeBlocks() {
 
     // attach relevant event listener
     createdIcon.click(saveInputData)
+    createdIcon.click(openModal)
   })
 }
 
@@ -106,4 +117,15 @@ function resetArrayData() {
     item.day = currentCalendarDay
     item.value = ''
   })
+}
+
+function openModal() {
+  $('#modal').show()
+  setTimeout(() => {
+    $('#modal').hide()
+  }, 1300)
+}
+
+function closeModal() {
+  $('#modal').hide()
 }
